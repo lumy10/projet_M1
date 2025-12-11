@@ -39,13 +39,13 @@ class Atom:
         return tuple(f"{n}{letters[l]}{nb_elec}" for n, l, nb_elec in orbitales_list)
     
     def __repr__(self):
-        return f"Atom(name='{self.name}', num_electron={self.num_electron}, weight={self.weight})"
+        return self.name
 
     def __str__(self):
         return f"{self.name} ({self.weight},{self.num_electron} )"
     
     def __eq__(self,other):
-        if self.name==other.name and self.num_electron==other.num_electron and self.weight==other.weight:
+        if self.name==other.name :
             return True 
         else:
             return False
@@ -76,3 +76,4 @@ molybdenum = Atom("Mo", 42, 96)
 #print(carbon.elec_config)
 #print(carbon==oxygen)
 #print(oxygen.elec_config)
+
