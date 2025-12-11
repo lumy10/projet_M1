@@ -1,7 +1,7 @@
 
 import atom
 
-#dictionnaire symbole str et Atom correspondant
+#dictionnaire symbole str et objet Atom correspondant
 biosphere_elements = {i.name:i for i in vars(atom).values() if isinstance(i, atom.Atom)}
 
 def parse_formula(s):
