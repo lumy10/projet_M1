@@ -1,4 +1,4 @@
-import mol
+from chempkg import mol
 import numpy as np
 import matplotlib.pyplot as plt
 

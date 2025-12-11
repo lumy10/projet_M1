@@ -1,14 +1,17 @@
 
-import atom
+from chempkg import atom
 
 #dictionnaire symbole str et objet Atom correspondant
 biosphere_elements = {i.name:i for i in vars(atom).values() if isinstance(i, atom.Atom)}
 
 def parse_formula(s):
     s=list(s)
-    for i in range(1,len(s)):
-        if s[i].isupper() and not s[i-1].isdigit(): #si une majuscule n'est pas précédée d'un chiffre
+    i = 1
+    while i < len(s):
+        if s[i].isupper() and not s[i-1].isdigit():
             s.insert(i, "1")
+            i += 1  # Sauter le "1" qu'on vient d'insérer
+        i += 1
 
     # Si la formule finit par une lettre sans nombre ajouter 1
     if s[-1].isalpha():
@@ -17,12 +20,18 @@ def parse_formula(s):
     #créer le dictionnaires, les clés sont les instances d'Atom, les valeurs sont les quantités
     d = {}
     i = 0
-    while i<len(s):
-        elem = s[i]
-        if s[i+1].islower():
-            elem += s[i+1]; i+=1
-        i+=1
-        d[biosphere_elements[elem]] = int(s[i])
+    while i<len(s)-1:
+        if s[i].isalpha(): 
+            elem = s[i] 
+            if s[i+1].islower():
+                elem += s[i+1]; i+=1
+            i+=1
+            atom_instance = biosphere_elements[elem]
+            count = int(s[i])
+            if atom_instance in d:
+                d[atom_instance] += count
+            else:
+                d[atom_instance] = count
         i+=1
     return d
 
@@ -42,7 +51,7 @@ class Molecule:
     
     @property
     def weight(self):
-        return sum(atom.weight * count for atom, count in self.atoms.items())
+        return float( sum(atom.weight * count for atom, count in self.atoms.items()))
     
     def __repr__(self):
         return f"Atom(formula='{self.formula}')"

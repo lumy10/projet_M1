@@ -19,8 +19,29 @@ def get_orbitales (Z: int ):
         i+=1
     return orbitales_atom
 
+element=[
+"O", # Oxygen
+"C", # Carbon
+"H", # Hydrogen
+"N", # Nitrogen
+"Ca", # Calcium
+"P", # Phosphorus
+"K", # Potassium
+"S", # Sulfur
+"Na", # Sodium
+"Cl", # Chlorine
+"Fe", # Iron
+"I", # Iodine
+"F", # Fluorine
+"Co", # Cobalt
+"Mo", # Molybdenum
+]
+
 class Atom:
+    
     def __init__(self, name:str,num_electron:int, weight:float):
+        if name not in element: 
+            raise ValueError(f"Élément chimique inconnu: {name}")
        
         """
         name (str): Symbole chimique (ex: 'C', 'O')
@@ -63,8 +84,8 @@ P = Atom("P", 15, 31)     # phosphorus
 K = Atom("K", 19, 39)     # potassium
 S = Atom("S", 16, 32)     #sulfur
 Na = Atom("Na", 11, 23)    #sodium
-Cl = Atom("Cl", 17, 35)    # chlorine
-Fe = Atom("Fe", 26, 56)    #iron
+Cl = Atom("Cl", 17, 35.5)    # chlorine
+Fe = Atom("Fe", 26, 55.8)    #iron
 I = Atom("I", 53, 127)    # iodin
 F = Atom("F", 9, 19)      # fluorine
 Co = Atom("Co", 27, 59)    #colbat
