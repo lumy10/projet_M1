@@ -1,5 +1,8 @@
 
-from atom import Atom
+import atom
+
+#dictionnaire symbole str et Atom correspondant
+biosphere_elements = {i.name:i for i in vars(atom).values() if isinstance(i, atom.Atom)}
 
 def parse_formula(s):
     s=list(s)
@@ -11,7 +14,7 @@ def parse_formula(s):
     if s[-1].isalpha():
         s += "1"
 
-    #créer le dictionnaires, les clés sont les suites de lettres, les valeurs sont les chiffres suivants
+    #créer le dictionnaires, les clés sont les instances d'Atom, les valeurs sont les quantités
     d = {}
     i = 0
     while i<len(s):
@@ -19,7 +22,7 @@ def parse_formula(s):
         if s[i+1].islower():
             elem += s[i+1]; i+=1
         i+=1
-        d[elem] = d.get(elem, int(s[i]))
+        d[biosphere_elements[elem]] = int(s[i])
         i+=1
     return d
 
@@ -35,11 +38,11 @@ class Molecule:
 
     @property
     def atoms(self):
-        return ...
+        return parse_formula(self.formula)
     
     @property
     def weight(self):
-        return...
+        return sum(atom.weight * count for atom, count in self.atoms.items())
     
     def __repr__(self):
         return f"Atom(formula='{self.formula}')"
@@ -54,4 +57,6 @@ class Molecule:
             return False
         
 
-parse_formula("C2OH6")
+#x=Molecule("C2OH6")
+#print(x.weight)
+#print(x.atoms)
