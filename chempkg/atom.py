@@ -50,30 +50,32 @@ class Atom:
         else:
             return False
         
+    def __hash__(self):
+        return hash(self.name)
+        
 
-oxygen = Atom("O", 8, 16)      
-carbon = Atom("C", 6, 12)       
-hydrogen = Atom("H", 1, 1)        
-nitrogen = Atom("N", 7, 14)       
-calcium = Atom("Ca", 20, 40)   
-phosphorus = Atom("P", 15, 31)      
-potassium = Atom("K", 19, 39)      
-sulfur = Atom("S", 16, 32)       
-sodium = Atom("Na", 11, 23)    
-chlorine = Atom("Cl", 17, 35)     
-iron = Atom("Fe", 26, 56)    
-iodin = Atom("I", 53, 127)     
-fluorine = Atom("F", 9, 19)       
-colbat = Atom("Co", 27, 59)    
-molybdenum = Atom("Mo", 42, 96)     
+O = Atom("O", 8, 16)     #oxygen 
+C = Atom("C", 6, 12)     #carbon  
+H = Atom("H", 1, 1)      #hydrogen
+N = Atom("N", 7, 14)     # nitrogen 
+Ca = Atom("Ca", 20, 40)   # calcium
+P = Atom("P", 15, 31)     # phosphorus
+K = Atom("K", 19, 39)     # potassium
+S = Atom("S", 16, 32)     #sulfur
+Na = Atom("Na", 11, 23)    #sodium
+Cl = Atom("Cl", 17, 35)    # chlorine
+Fe = Atom("Fe", 26, 56)    #iron
+I = Atom("I", 53, 127)    # iodin
+F = Atom("F", 9, 19)      # fluorine
+Co = Atom("Co", 27, 59)    #colbat
+Mo = Atom("Mo", 42, 96)    # molybdenum
 
 
 
 
 
-
-#print(carbon)
-#print(carbon.elec_config)
-#print(carbon==oxygen)
-#print(oxygen.elec_config)
-
+#print(C)
+#print(C.elec_config)
+#print(C==oxygen)
+#print(O.elec_config)
+#print(O.name)
