@@ -16,9 +16,6 @@ def valid_reaction(reactives: list[tuple[mol.Molecule, int]],products: list[tupl
         
     return L_reac == L_prod
 
-#h2 , o2 , h2o = mol.Molecule ("H2"), mol.Molecule ("O2"), mol.Molecule ("H2O")
-#print( valid_reaction ( reactives =[( h2 , 2), (o2 , 1)] , products =[( h2o , 2)]))
-
 def kinetic_decomp(A0: float, k: float, T: float, steps: int = 10, figure_path: str = None):
     x=np.linspace(0,10,10)
     y=[A0*2.7182818**(-k*t) for t in x]

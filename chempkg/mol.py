@@ -59,7 +59,3 @@ class Molecule:
         else:
             return False
         
-
-#x=Molecule("C2OH6")
-#print(x.weight)
-#print(x.atoms)

@@ -90,13 +90,3 @@ I = Atom("I", 53, 127)    # iodin
 F = Atom("F", 9, 19)      # fluorine
 Co = Atom("Co", 27, 59)    #colbat
 Mo = Atom("Mo", 42, 96)    # molybdenum
-
-
-
-
-
-#print(C)
-#print(C.elec_config)
-#print(C==oxygen)
-#print(O.elec_config)
-#print(O.name)
