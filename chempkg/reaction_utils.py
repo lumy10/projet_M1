@@ -17,8 +17,8 @@ def valid_reaction(reactives: list[tuple[mol.Molecule, int]],products: list[tupl
     return L_reac == L_prod
 
 def kinetic_decomp(A0: float, k: float, T: float, steps: int = 10, figure_path: str = None):
-    x=np.linspace(0,10,10)
-    y=[A0*2.7182818**(-k*t) for t in x]
+    x=np.linspace(0,T,steps)
+    y=np.array([A0*np.exp(-k*t) for t in x])
     if figure_path != None:
         plt.plot(x,y)
         plt.title("Evolution de [A](t)")
