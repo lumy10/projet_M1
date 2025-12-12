@@ -21,16 +21,20 @@ def parse_formula(s):
     #créer le dictionnaires, les clés sont les instances d'Atom, les valeurs sont les quantités
     d = {}
     i = 0
-    while i<len(s)-1:
+    while i<len(s):
         if s[i].isalpha(): 
             elem = s[i] 
             if elem not in biosphere_elements:
                 raise ValueError(f"Élément chimique inconnu: {elem}")
-            if s[i+1].islower():
-                elem += s[i+1]; i+=1
             i+=1
+            if s[i].islower():
+                elem += s[i]; i+=1
             atom_instance = biosphere_elements[elem]
-            count = int(s[i])
+            num = s[i]
+            while i < len(s)-1 and s[i+1].isdigit():
+                i += 1
+                num += s[i]
+            count = int(num)
             d[atom_instance] = d.get(atom_instance, 0) + count
 
         i+=1
