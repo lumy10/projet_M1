@@ -16,6 +16,7 @@ def parse_formula(s):
     # Si la formule finit par une lettre sans nombre ajouter 1
     if s[-1].isalpha():
         s += "1"
+        
 
     #créer le dictionnaires, les clés sont les instances d'Atom, les valeurs sont les quantités
     d = {}
@@ -23,15 +24,15 @@ def parse_formula(s):
     while i<len(s)-1:
         if s[i].isalpha(): 
             elem = s[i] 
+            if elem not in biosphere_elements:
+                raise ValueError(f"Élément chimique inconnu: {elem}")
             if s[i+1].islower():
                 elem += s[i+1]; i+=1
             i+=1
             atom_instance = biosphere_elements[elem]
             count = int(s[i])
-            if atom_instance in d:
-                d[atom_instance] += count
-            else:
-                d[atom_instance] = count
+            d[atom_instance] = d.get(atom_instance, 0) + count
+
         i+=1
     return d
 
@@ -44,10 +45,12 @@ class Molecule:
         weight (float): Masse atomique total
         """
         self.formula = formula
+        self._atoms_dict = parse_formula(self.formula)
+
 
     @property
     def atoms(self):
-        return parse_formula(self.formula)
+        return self._atoms_dict
     
     @property
     def weight(self):
