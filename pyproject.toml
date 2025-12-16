@@ -1,0 +1,14 @@
+[project]
+name = "chempkg"
+version = "0.1.0"
+description = "Python package for chemistry"
+readme = "README.md"
+requires-python = ">=3.12"
+authors = [{name = "Nour Bouabid", email = "nourbouabid02@gmail.com"}]
+dependencies = [
+" matplotlib >=3.10.6 ",
+" numpy >=2.3.3 "
+]
+[build-system ]
+requires = [" setuptools "]
+build-backend = " setuptools . build_meta "

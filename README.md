@@ -71,4 +71,4 @@ Une figure peut être sauvegardée si figure_path est fourni
 
 Cloner le dépôt puis installer le package en mode développement :
 
-`pip install -e` 
+`pip install -e .` 
