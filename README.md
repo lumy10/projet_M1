@@ -20,9 +20,7 @@ Ce module permet de représenter des atomes.
 
 ### Classe Atom  
 
-'
-Atom(name: str, num_electron: int, weight: float)
-'
+'Atom(name: str, num_electron: int, weight: float)'
 
 Attributs :
 - name : symbole chimique de l’atome
