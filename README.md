@@ -20,7 +20,9 @@ Ce module permet de représenter des atomes.
 
 ### Classe Atom  
 
-'''python Atom(name: str, num_electron: int, weight: float)
+```python
+Atom(name: str, num_electron: int, weight: float)
+```
 
 Attributs :
 - name : symbole chimique de l’atome
@@ -40,9 +42,9 @@ O, C, H, N, Ca, P, K, S, Na, Cl, Fe, I, F, Co, Mo
 Ce module permet de manipuler des molécules à partir de leur formule chimique.
 
 ### Classe Molecule  
-''' python
+```python
 Molecule(formule: str)
-'''
+```
 
 ### Méthodes :
 - atoms() : renvoie un dictionnaire associant chaque atome de la molécule à sa quantité
@@ -53,14 +55,14 @@ Molecule(formule: str)
 Ce module fournit des outils liés aux réactions chimiques et à la cinétique.
 
 ### Fonctions :
-'
+```python
 valid_reaction(reactifs: list[tuple[Molecule, int]], produits: list[tuple[Molecule, int]]) -> bool
-' 
+```
 Vérifie si une réaction chimique est équilibrée (conservation des atomes)
 
-'
+```python
 kinetic_decomp(A0: float, k: float, T: float, steps: int = 10, figure_path: str | None = None)  
-'
+```
 Calcule l’évolution temporelle de la concentration d’une molécule lors d’une réaction de décomposition cinétique.  
 Une figure peut être sauvegardée si figure_path est fourni
 
