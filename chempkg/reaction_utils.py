@@ -1,25 +1,45 @@
-from chempkg import mol
+"""
+module chempkg.reaction_utils
+outils liees aux reactions chimiques
+"""
 import numpy as np
 import matplotlib.pyplot as plt
+from chempkg import mol
 
-
-def valid_reaction(reactives: list[tuple[mol.Molecule, int]],products: list[tuple[mol.Molecule, int]]):
-    L_reac = {}
+def valid_reaction(reactives:list[tuple[mol.Molecule, int]], products:list[tuple[mol.Molecule, int]]):
+    """
+    :param reactives: molecules des reactifs avec leurs quantites
+    :type reactives: list[tuple[Molecule, int]]
+    :param products: molecules des produits avec leurs quantites
+    :type products: list[tuple[Molecule, int]]
+    """
+    reac = {}
     for molecule, coeff in reactives:
         for atom, count in molecule.atoms.items():
-            L_reac[atom] = L_reac.get(atom, 0) + count * coeff
+            reac[atom] = reac.get(atom, 0) + count * coeff
 
-    L_prod = {}
+    prod = {}
     for molecule, coeff in products:
         for atom, count in molecule.atoms.items():
-            L_prod[atom] = L_prod.get(atom, 0) + count * coeff
-        
-    return L_reac == L_prod
+            prod[atom] = prod.get(atom, 0) + count * coeff
+    return reac == prod
 
-def kinetic_decomp(A0: float, k: float, T: float, steps: int = 10, figure_path: str = None):
-    x=np.linspace(0,T,steps)
-    y=np.array([A0*np.exp(-k*t) for t in x])
-    if figure_path != None:
+def kinetic_decomp(a: float, k: float, periode: float, steps: int = 10, figure_path: str = None):
+    """
+    :param a: Concentration initiale
+    :type a: float
+    :param k: Constante de reaction
+    :type k: float
+    :param periode: Periode temporelle
+    :type periode: float
+    :param steps: Pas
+    :type steps: int
+    :param figure_path: Titre de la figure
+    :type figure_path: str
+    """
+    x=np.linspace(0,periode,steps)
+    y=np.array([a*np.exp(-k*t) for t in x])
+    if figure_path is not None:
         plt.plot(x,y)
         plt.title("Evolution de [A](t)")
         plt.xlabel("Temps (s)")
@@ -27,8 +47,3 @@ def kinetic_decomp(A0: float, k: float, T: float, steps: int = 10, figure_path: 
         plt.savefig(figure_path)
         plt.show()
     return y
-
-A_t = kinetic_decomp (A0 =0.1 , k=0.5 , T=5, steps =10)
-print (A_t )
-
-A_t = kinetic_decomp (A0 =0.1 , k=0.5 , T=5, steps =10 , figure_path ="test.jpeg")
