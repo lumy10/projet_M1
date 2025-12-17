@@ -57,8 +57,6 @@ class Atom:
         :param weight: Masse atomique
         :type weight: float
         """
-        if name not in element:
-            raise ValueError(f"Élément chimique inconnu: {name}")
         self.name = name
         self.num_electron = num_electron
         self.weight = weight
